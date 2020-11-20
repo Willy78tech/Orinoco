@@ -1,4 +1,4 @@
-const carts = document.querySelectorAll('.add-cart');
+const carts = document.querySelectorAll('.btn');
 
 
 let product = [
