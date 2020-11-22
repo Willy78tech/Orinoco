@@ -1,7 +1,7 @@
 const carts = document.querySelectorAll('.btn');
 
-
-let product = [
+// Déclaration des objets appareils photos dans mon tableau produit
+const products = [
     {
         name: 'Asahiflex Pentax',
         tag: 'AsahiflexPentax',
@@ -36,16 +36,17 @@ let product = [
         price: 110,
         image: 'images/vcam_5.jpg',
         inCart: 0,
-    },
+    }
 ];
 
+// boucle d'ajout au panier à chaque événement de clic sur le bouton ajouter
 for (let i=0; i < carts.length; i++) {
     carts[i].addEventListener('click', () => {
-        cartNumbers();
+        cartNumbers(products[i]);
     })
 }
 
-
+// fonction permettant de garder le nombre d'articles dans le panier si on recharge la page
 function onLoadCartNumbers() {
     let productNumbers = localStorage.getItem('cartNumbers');
 
@@ -54,7 +55,9 @@ function onLoadCartNumbers() {
     } 
 }
 
-function cartNumbers() {
+// fonction permettant de déterminer le nombre d'articles dans le panier
+function cartNumbers(product) {
+    console.log("the product clic is", product);
     let productNumbers = localStorage.getItem('cartNumbers');
     productNumbers = parseInt(productNumbers);
 
@@ -65,6 +68,30 @@ function cartNumbers() {
         localStorage.setItem('cartNumbers', 1);
         document.querySelector('.cart span').textContent = 1;
     }
+    setItems(product);
+}
+
+// fonction permettant de déterminer les différents types d'articles dans le panier
+function setItems(product) {
+    let cartItems = localStorage.getItem('productsInCart');
+    cartItems = JSON.parse(cartItems);
+
+    if(cartItems != null) {
+
+        if (cartItems[product.tag] == undefined) {
+            cartItems = {
+                ...cartItems,
+                [product.tag]: product
+            }
+        }        
+    cartItems[product.tag].inCart += 1;
+    } else {
+        product.inCart = 1;
+        cartItems = {
+            [product.tag]: product
+        }
+    }
+    localStorage.setItem("productsInCart", JSON.stringify(cartItems));
 }
 
 onLoadCartNumbers();
