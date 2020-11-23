@@ -1,7 +1,7 @@
-const carts = document.querySelectorAll('.btn');
+let carts = document.querySelectorAll('.add-cart');
 
 // Déclaration des objets appareils photos dans mon tableau produit
-const products = [
+let products = [
     {
         name: 'Asahiflex Pentax',
         tag: 'AsahiflexPentax',
@@ -57,7 +57,6 @@ function onLoadCartNumbers() {
 
 // fonction permettant de déterminer le nombre d'articles dans le panier
 function cartNumbers(product) {
-    console.log("the product clic is", product);
     let productNumbers = localStorage.getItem('cartNumbers');
     productNumbers = parseInt(productNumbers);
 

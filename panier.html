@@ -1,0 +1,155 @@
+<!doctype html>
+
+<html lang="fr">
+
+    <head>
+
+    <!-- Required meta tags -->
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="css/style.css" />
+
+
+
+    <title>ORINOCO l'univers de la photo</title>
+
+    </head>
+
+    <body>
+        <div class="bg-dark">
+            <div class="container">
+                <div class="row">
+                    <nav class="col navbar navbar-expand-lg navbar-dark">
+                        <a class="navbar-brand" href="index.html"><img src="images/logo.png" width="50" height="50" alt="Info Logo" /> ORINOCO</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div id="navbarContent" class="collapse navbar-collapse">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html">Accueil</a>
+                                </li>
+                                <li class="cart active"><a class="nav-link" href="panier.html"><ion-icon name="basket"></ion-icon><span> 0</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h3>Passer votre commande</h3><br><br>
+            <div class="row">        
+                <form class="needs-validation" novalidate>
+                    <div class="form-group">
+                        <label for="lastname">
+                            Nom
+                        </label>
+                        <input id="lastname" class="form-control" required />
+                        <label for="firstname">
+                            Prenom
+                        </label>
+                        <input id="firstname" class="form-control" required />
+                        <div class="valid-feedback">Ok !</div>
+                        <div class="invalid-feedback">Valeur incorrecte</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="adress">
+                            Adresse de livraison
+                        </label>
+                        <input id="adress" class="form-control" required />
+                        <div class="valid-feedback">Ok !</div>
+                        <div class="invalid-feedback">Valeur incorrecte</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mail">
+                            Code postal
+                        </label>
+                        <input id="adress" class="form-control" required />
+                        <div class="valid-feedback">Ok !</div>
+                        <div class="invalid-feedback">Valeur incorrecte</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            Email
+                        </label>
+                        <input id="email" class="form-control" type="email" placeholder="vous@example.com" required />
+                        <div class="valid-feedback">Ok !</div>
+                        <div class="invalid-feedback">Valeur incorrecte</div>								
+                    </div>
+                    <div class="form-group">
+                        <label for="input_504">
+                            Comment nous avez-vous connu ?
+                        </label>
+                        <input class="form-control" type="email" required id="input_504" />
+                        <div class="valid-feedback">Ok !</div>
+                        <div class="invalid-feedback">Valeur incorrecte</div>								
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="cgu" required>
+                            <label class="form-check-label" for="cgu">J'accepte les conditions générales d'utilisation et de vente</label>
+                            <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
+                        </div>
+                    </div> 
+                        <input class="btn-primary stretched-link" type="submit" value="Commander"/>
+                </form>
+            </div>            
+        </div>
+        <script>
+            /*La fonction principale de ce script est d'empêcher l'envoi du formulaire si un champ a été mal rempli et d'appliquer les styles de validation aux différents éléments de formulaire*/
+            (function() {
+              'use strict';
+              window.addEventListener('load', function() {
+                let forms = document.getElementsByClassName('needs-validation');
+                let validation = Array.prototype.filter.call(forms, function(form) {
+                  form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                  }, false);
+                });
+              }, false);
+            })();
+        </script>
+    </body>
+
+        <footer class="bg-light mt-5">
+            <div class="container">
+                <div class="row pt-4 pb-3">
+                    <div class="col">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item"><a href="#">À propos</a></li>
+                            <li class="list-inline-item">&middot;</li>
+                            <li class="list-inline-item"><a href="#">Vie privée</a></li>
+                            <li class="list-inline-item">&middot;</li>
+                            <li class="list-inline-item"><a href="#">Conditions d'utilisations</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+      </body>
+</html>
