@@ -7,35 +7,35 @@ let products = [
         tag: 'AsahiflexPentax',
         price: 75,
         image: 'images/vcam_1.jpg',
-        inCart: 0,
+        inCart: 0
     },
     {
         name: 'Réflex Argentique',
         tag: 'RéflexArgentique',
         price: 85,
         image: 'images/vcam_2.jpg',
-        inCart: 0,
+        inCart: 0
     },
     {
         name: 'Folding',
         tag: 'Folding',
         price: 250,
         image: 'images/vcam_3.jpg',
-        inCart: 0,
+        inCart: 0
     },
     {
         name: 'Leica M2',
         tag: 'LeicaM2',
         price: 100,
         image: 'images/vcam_4.jpg',
-        inCart: 0,
+        inCart: 0
     },
     {
         name: 'Pentax K1000',
         tag: 'PentaxK1000',
         price: 110,
         image: 'images/vcam_5.jpg',
-        inCart: 0,
+        inCart: 0
     }
 ];
 
