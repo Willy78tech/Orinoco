@@ -3,38 +3,33 @@ let carts = document.querySelectorAll('.add-cart');
 // Déclaration des objets appareils photos dans mon tableau produit
 let products = [
     {
-        name: 'Asahiflex Pentax',
-        tag: 'AsahiflexPentax',
+        name: "Asahiflex Pentax",
+        tag: "AsahiflexPentax",
         price: 75,
-        image: 'images/vcam_1.jpg',
         inCart: 0
     },
     {
-        name: 'Réflex Argentique',
-        tag: 'RéflexArgentique',
+        name: "Réflex Argentique",
+        tag: "RéflexArgentique",
         price: 85,
-        image: 'images/vcam_2.jpg',
         inCart: 0
     },
     {
-        name: 'Folding',
-        tag: 'Folding',
-        price: 250,
-        image: 'images/vcam_3.jpg',
+        name: "Folding",
+        tag: "Folding",
+        price: 250,        
         inCart: 0
     },
     {
-        name: 'Leica M2',
-        tag: 'LeicaM2',
+        name: "Leica M2",
+        tag: "LeicaM2",
         price: 100,
-        image: 'images/vcam_4.jpg',
         inCart: 0
     },
     {
-        name: 'Pentax K1000',
-        tag: 'PentaxK1000',
+        name: "Pentax K1000",
+        tag: "PentaxK1000",
         price: 110,
-        image: 'images/vcam_5.jpg',
         inCart: 0
     }
 ];
@@ -43,6 +38,7 @@ let products = [
 for (let i=0; i < carts.length; i++) {
     carts[i].addEventListener('click', () => {
         cartNumbers(products[i]);
+        totalCost(products[i]);
     })
 }
 
@@ -76,7 +72,6 @@ function setItems(product) {
     cartItems = JSON.parse(cartItems);
 
     if(cartItems != null) {
-
         if (cartItems[product.tag] == undefined) {
             cartItems = {
                 ...cartItems,
@@ -91,6 +86,19 @@ function setItems(product) {
         }
     }
     localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+}
+
+// fonction pour définir le prix du panier
+function totalCost(product) {
+    let cartCost = localStorage.getItem("totalCost");
+    
+
+    if (cartCost != null) {
+        cartCost = parseInt(cartCost);
+        localStorage.setItem("totalCost", cartCost + product.price);
+    } else {
+        localStorage.setItem("totalCost", product.price);
+    }
 }
 
 onLoadCartNumbers();
