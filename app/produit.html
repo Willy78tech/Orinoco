@@ -36,19 +36,24 @@
             </div>
         </div>
         <!-- MAIN / Partie principale 
-            Liste des produits disponibles générée par le script JavaScript grâce à des requêtes avec l'API
+            Partie générée par le script JavaScript et par requête avec l'API
             -->
-            <main id="productPage">
-                <div class="row">
-                    <div class="col-12 col-lg-4">
-                        <h1>Nos Produits</h1>
+            <main id="productDetailPage" class="row">
+                <section id="productCard" class="offset-1 col-10 offset-lg-3 col-lg-6">
+                    <br/>
+                    <button class="btn btn-danger"><i class="fa fa-plus"></i>Ajouter au panier</button>
+                </section>
+                <!-- Fenêtre popup -->
+                <aside id="popupAdd" class="hide col-12"> 
+                    <div>
+                        <p><i class="fa fa-check"></i>Votre produit a bien été ajouté au panier</p>
                     </div>
-                </div>
-                <div id="fromServer">
-
-                </div>
+                    <div>
+                        <button class="btn"><a href="listeProduit.html">Continuer mes achats</a></button>
+                        <button class="btn"><a href="panier.html">Voir mon panier</a></button>
+                    </div>
+                </aside>
             </main>
-
         <footer class="bg-light mt-5">
             <div class="container">
                 <div class="row pt-4 pb-3">
@@ -68,9 +73,9 @@
 
 
     <!-- Optional JavaScript -->
-        <script src="js/utils.js"></script>
-        <script src="js/functions.js"></script>
-        <script src="js/product.js"></script>
+    <script src="./js/product.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/functions.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

@@ -1,77 +1,57 @@
-// Imports
-const utils = new Utils();
+/*
+* SCRIPT JavaScript - Affichage dynamique des résultats de l'API (GET)
+*/
 
-// Classe
-class Product {
-    constructor() {
-        this.container = document.getElementById('section__products');
-        this.basketCounter = document.getElementById('counter');
-        this.productId = utils.getUrlParams()[0][1];
-        this.productLens = null;
-        this.basket = utils.getStorage('basket');
-        this.data = [];
-    }
+/*
+* URL de l'API
+* URL avec l'id d'un produit
+*/ 
+const url = "http://localhost:3000/api/cameras";
+const hash = window.location.hash;
+const idHash = hash.replace('#', '/');
+const nomUrl = url + idHash;
 
-    // Récupération des données du produit par l'ID fourni en URL
-    getProduct() {
-        const that = this;
+/*
+* LISTE DES MODELES
+*/
+// Séléction de la balise div conteneur des modèles
+const listPhotos = document.getElementById('fromServer');
+/*
+* Appel de la fonction getCameras() en passant l'url de l'API en paramètre
+* - then: si réussi, parse la réponse, affiche la réponse dans la console et appel la fonction createListCameras() en prenant en paramètre la réponse parsée
+* - catch: si echec, affiche l'erreur dans la console
+* - then: affiche la fin de l'exécution de la requête dans la console
+*/
+getResp(url).then(response => {
+    let cameras = JSON.parse(response);
+    console.log(cameras);
+    createListCameras(cameras);
+}).catch(error => {
+    console.error(error);
+}).then(function(){
+    console.log("Fin des requêtes Ajax");
+});
 
-        utils.get('http://localhost:3000/api/cameras/' + that.productId).then(
-            (product) => {
-                that.data += '<div class="row">';
-                that.data += '   <div class="col col__large">';
-                that.data += '       <div class="section__product">';
-                that.data += '           <img class="section__product-picture" src="' + product.imageUrl + '"/>';
-                that.data += '           <h3 class="section__product-title">' + product.name + '</h3>';
-                that.data += '           <div class="section__product-content">';
-                that.data += '               <p>' + product.description + '</p>';
-                that.data += '               <p><b>Couleurs :</b>';
 
-                let j = 1;
-                for (let lens of product.lenses) {
-                    if (j !== product.lenses.length) {
-                        that.data += ' ' + lens + ',';
-                    } else {
-                        that.data += ' ' + lens + '.';
-                    }
-                    j++;
-                }
 
-                that.data += '               </p>';
-                that.data += '               <p><b>Prix :</b> ' + product.price + '€</p>';
-                that.data += '           </div>';
-                that.data += '       </div>';
-                that.data += '   </div>';
-                that.data += '   <div class="col col__small">';
-                that.data += '       <div class="section__product">';
-                that.data += '           <h4 class="section__product-title">Choisir une lentille</h4>';
-                that.data += '           <div class="section__product-content">';
-                that.data += '               <p>Afin que votre appareil corresponde parfaitement à vos attentes, veuillez nous indiquer votre type de lentille !</p>';
-                that.data += '               <select class="input" onchange="updateItemLens(this)">';
-                that.data += '                      <option value="" disabled selected hidden>Choisissez un type de lentille</option>';
-
-                for (let lens of product.lenses) {
-                    that.data += '                  <option value="' + lens + '">' + lens + '</option>';
-                }
-
-                that.data += '               </select>';
-                that.data += '           </div>';
-                that.data += '       </div>';
-                that.data += '       <div class="section__product">';
-                that.data += '           <h4 class="section__product-title">Ajouter au panier</h4>';
-                that.data += '           <div class="section__product-content">';
-                that.data += '               <p>Si ce produit vous plait, cliquez simplement sur le bouton ci-dessous pour l\'ajouter à votre panier !</p>';
-                that.data += '               <button class="button" onclick="addToBasket(\'' + product._id + '\', \'' + product.name + '\', \'' + product.price + '\', \'' + product.imageUrl + '\', \'' + product.description + '\');"><i class="fas fa-shopping-cart"></i> Ajouter au panier</button>';
-                that.data += '           </div>';
-                that.data += '       </div>';
-                that.data += '   </div>';
-                that.data += '</div>';
-
-                return that.container.innerHTML = that.data;
-            },
-            (error) => {
-                return that.container.innerHTML = '<p>Une erreur est survenue au moment du chargement du produit. Veuillez vous assurer que votre API est activée !</p>';
-            }
-        );
-    }
-}
+/*
+* DETAIL D'UN MODELE
+*/
+// Séléction de la balise div conteneur des détails du produit
+const productCard = document.getElementById('productCard');
+/*
+* Appel de la fonction getCamera() en passant l'url de l'API + id en paramètre
+* - then: si réussi, parse la réponse, affiche la réponse dans la console et appel la fonction detailProduct() en prenant en paramètre la réponse parsée
+* - catch: si echec, affiche l'erreur dans la console
+* - then: affiche la fin de l'exécution de la requête dans la console
+*/
+getResp(nomUrl).then(function(response){
+    let camera = JSON.parse(response);
+    console.log(camera);
+    detailProduct(camera);
+}).catch(error => {
+    console.error(error);
+})
+.then(function(){
+    console.log("Fin des requêtes Ajax");
+})
