@@ -1,3 +1,0 @@
-# Info-School-
-# Infoschool
-# Infoschool

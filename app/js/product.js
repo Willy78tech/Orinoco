@@ -1,57 +1,69 @@
-/*
-* SCRIPT JavaScript - Affichage dynamique des résultats de l'API (GET)
-*/
+/*PRODUIT SELECTIONNE INDEX*/
 
-/*
-* URL de l'API
-* URL avec l'id d'un produit
-*/ 
-const url = "http://localhost:3000/api/cameras";
-const hash = window.location.hash;
-const idHash = hash.replace('#', '/');
-const nomUrl = url + idHash;
+/*Création de la variable contenant l'id*/
+const params = new URLSearchParams(window.location.search);
+let camId = params.get("id");
 
-/*
-* LISTE DES MODELES
-*/
-// Séléction de la balise div conteneur des modèles
-const listPhotos = document.getElementById('fromServer');
-/*
-* Appel de la fonction getCameras() en passant l'url de l'API en paramètre
-* - then: si réussi, parse la réponse, affiche la réponse dans la console et appel la fonction createListCameras() en prenant en paramètre la réponse parsée
-* - catch: si echec, affiche l'erreur dans la console
-* - then: affiche la fin de l'exécution de la requête dans la console
-*/
-getResp(url).then(response => {
-    let cameras = JSON.parse(response);
-    console.log(cameras);
-    createListCameras(cameras);
-}).catch(error => {
-    console.error(error);
-}).then(function(){
-    console.log("Fin des requêtes Ajax");
-});
+/*Appel du produit séléctionné*/
+let mesVariables; //On stock les données du produit dans cette variable.
 
+async function selectionProduit() {
+    fetch(url + "/" + camId).then(function(response){
+        response.json().then(function(data){
+            mesVariables = data;
 
+            /*On vient cibler la balise div ayant pour id Descriptionproduit*/
+            let descriptionProduit = document.getElementById("Descriptionproduit");
 
-/*
-* DETAIL D'UN MODELE
-*/
-// Séléction de la balise div conteneur des détails du produit
-const productCard = document.getElementById('productCard');
-/*
-* Appel de la fonction getCamera() en passant l'url de l'API + id en paramètre
-* - then: si réussi, parse la réponse, affiche la réponse dans la console et appel la fonction detailProduct() en prenant en paramètre la réponse parsée
-* - catch: si echec, affiche l'erreur dans la console
-* - then: affiche la fin de l'exécution de la requête dans la console
-*/
-getResp(nomUrl).then(function(response){
-    let camera = JSON.parse(response);
-    console.log(camera);
-    detailProduct(camera);
-}).catch(error => {
-    console.error(error);
-})
-.then(function(){
-    console.log("Fin des requêtes Ajax");
-})
+            /*On crée l'affichage de la description du produit séléctionné par l'utilisateur*/
+            let descriptionContainer = create("div", "class", "Blockdescription");
+            let descriptionProduitB1 = create("div", "class", "B1description");
+            let descriptionProduitB2 = create("div", "class", "B2description");
+            let descriptionProduitNom = create("h2", "class", "Nomdescription");
+            let descriptionProduitPrix = create("p", "class", "Prixdescription");
+            let descriptionProduitImage = create("img", "src", data.imageUrl);
+            let descriptionProduitDescription = create("p", "class", "Descriptionproduit");
+            
+            /*Attributs suplémentaires*/
+            descriptionProduitImage.setAttribute("alt", "Photographie de l'appareil.");
+            descriptionProduitImage.setAttribute("class", "Imagedescription");
+
+            /*Hiérarchisation des élements crées*/
+            descriptionProduit.appendChild(descriptionContainer);
+            descriptionContainer.appendChild(descriptionProduitB1);
+            descriptionContainer.appendChild(descriptionProduitB2);
+            descriptionProduitB1.appendChild(descriptionProduitImage);
+            descriptionProduitB2.appendChild(descriptionProduitNom);
+            descriptionProduitB2.appendChild(descriptionProduitPrix);
+            descriptionProduitB2.appendChild(descriptionProduitDescription);
+
+            /*Attribution des données aux élements créees*/
+            descriptionProduitNom.textContent = data.name;
+            descriptionProduitPrix.textContent = data.price / 100 + " " + "euros";
+            descriptionProduitDescription.textContent = data.description;
+
+            let selectLentille = document.getElementById("lentille");
+
+            data.lenses.forEach(lentilles => {
+                let option = document.createElement("option");
+                selectLentille.appendChild(option);
+                option.setAttribute("value", "Type de lentille");
+                option.textContent = lentilles;
+            });
+        })
+    })
+}
+selectionProduit();
+
+/*Ajouter un article au panier*/
+function ajouterAuPanier(){
+    const bouton = document.getElementById("Boutonpanier");
+    bouton.addEventListener("click", async function(){
+        panier.push(mesVariables);
+        localStorage.setItem("monPanier", JSON.stringify(panier));
+        alert("L'article a bien été ajouté à votre panier.")
+        location.reload();
+    });
+};
+ajouterAuPanier();
+
