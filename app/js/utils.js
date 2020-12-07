@@ -17,17 +17,18 @@ async function listeCams() {
     /*On crée l'affichage de la liste des produits proposés qui sera présente sur l'index*/
     cams.forEach((cameras) => {
         /*Utilisation de la fonction Create*/
-        let produitContainer = create("div", "class", "Block");
-        let produitB1 = create("div", "class", "B1");
-        let produitB2 = create("div", "class", "B2");
-        let produitNom = create("h2", "class", "Nomproduits");
+        let produitContainer = create("div", "class", "col-12 col-lg-4");
+        let produitB1 = create("div", "class", "card");
+        let produitB2 = create("div", "class", "card-body");
+        let produitNom = create("h2", "class", "card-title");
         let produitLien = create("a", "href", "produit.html?id=" + cameras._id);
-        let produitPrix = create("p", "class", "Prixproduit");
-        let produitImage = create("img", "src", cameras.imageUrl);
+        let produitPrix = create("h4", "class", "Prixproduit");
+        let produitImage = create("img", "src", cameras.imageUrl, "class", "card-img-top",);
 
     /*Attributs suplémentaires*/
         produitImage.setAttribute("alt", "image du produit");
-        produitImage.setAttribute("class", "Imageproduit");
+        produitImage.setAttribute("class", "card-img-top");
+        produitLien.setAttribute("class", "btn btn-primary");
         
     /*Hiérarchisation des élements crées*/ 
         produits.appendChild(produitContainer);
@@ -40,8 +41,8 @@ async function listeCams() {
 
     /*Attribution des données aux élements créees*/
         produitNom.textContent = cameras.name;
-        produitPrix.textContent = cameras.price / 100 + " " + "euros";
-        produitLien.textContent = "Voir la description du produit.";
+        produitPrix.textContent = cameras.price / 100 + " " + "€";
+        produitLien.textContent = "Description du produit";
     });
 };
 listeCams();

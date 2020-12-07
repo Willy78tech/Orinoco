@@ -46,7 +46,8 @@ function affichagePanier (){
             /*Attributs suplémentaires*/
             articleImage.setAttribute("src", article.imageUrl);
             articleAction.setAttribute("alt", "Retirer l'article du panier.");
-            articleAction.setAttribute("class", "fas fa-trash-alt"); //Logo poubelle pour supprimer l'article du panier.
+            articleAction.setAttribute("class", "fas fa-trash-alt"); 
+            //Logo poubelle pour supprimer l'article du panier.
             
             /*Suppression de l'article en cliquant sur la poubelle*/
             articleAction.addEventListener("click", function(event){
@@ -62,7 +63,7 @@ function affichagePanier (){
 
             /*Attribution des données aux élements créees*/
             articleNom.textContent = article.name;
-            articlePrix.textContent = article.price / 100 + " " + "euros";
+            articlePrix.textContent = article.price / 100 + " " + "€";
         });
 
         /*Création de la ligne du bas du tableau affichant le prix total de la commande*/
@@ -73,7 +74,7 @@ function affichagePanier (){
             total += priceArticle.price / 100;
         });
 
-        tableauFooterPrixTotal.textContent = "Prix total: " + total + " euros";        
+        tableauFooterPrixTotal.textContent = "Prix total: " + total + "€";        
     }
 }
 affichagePanier ();

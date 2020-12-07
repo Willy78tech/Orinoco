@@ -16,10 +16,10 @@ async function selectionProduit() {
             let descriptionProduit = document.getElementById("Descriptionproduit");
 
             /*On crée l'affichage de la description du produit séléctionné par l'utilisateur*/
-            let descriptionContainer = create("div", "class", "Blockdescription");
-            let descriptionProduitB1 = create("div", "class", "B1description");
-            let descriptionProduitB2 = create("div", "class", "B2description");
-            let descriptionProduitNom = create("h2", "class", "Nomdescription");
+            let descriptionContainer = create("article", "class", "col-12 col-lg-4");
+            let descriptionProduitB1 = create("div", "class", "card");
+            let descriptionProduitB2 = create("div", "class", "card-body");
+            let descriptionProduitNom = create("h2", "class", "card-title");
             let descriptionProduitPrix = create("p", "class", "Prixdescription");
             let descriptionProduitImage = create("img", "src", data.imageUrl);
             let descriptionProduitDescription = create("p", "class", "Descriptionproduit");
@@ -39,7 +39,7 @@ async function selectionProduit() {
 
             /*Attribution des données aux élements créees*/
             descriptionProduitNom.textContent = data.name;
-            descriptionProduitPrix.textContent = data.price / 100 + " " + "euros";
+            descriptionProduitPrix.textContent = data.price / 100 + " " + "€";
             descriptionProduitDescription.textContent = data.description;
 
             let selectLentille = document.getElementById("lentille");
