@@ -5,12 +5,12 @@ function affichagePanier (){
     if (panier.length > 0){
         document.getElementById("panierVide").remove();
 
-        /*Nous allons présenter le panier à l'utilisateut sous forme de tableau que nous plaçons dans la section "Sectionpanier"*/
+        /*Nous allons présenter le panier à l'utilisateur sous forme de tableau que nous plaçons dans la section "Sectionpanier"*/
         let tableauSection = document.getElementById("Sectionpanier");
 
         //Création du tableau
-        let tableauPanier = create("table", "class", "tableauPanier");
-        let tableauHeaderLigne = create("tr", "class", "tableauHeaderLigne");
+        let tableauPanier = create("table", "class", "table");
+        let tableauHeaderLigne = create("thead", "class", "thead-light");
         let tableauHeaderImage = document.createElement("th");
         let tableauHeaderNom = document.createElement("th");
         let tableauHeaderPrix = document.createElement("th");
@@ -78,3 +78,60 @@ function affichagePanier (){
     }
 }
 affichagePanier ();
+
+/*FORMULAIRE*/
+/*Validation de formulaire*/
+//Création de l'objet à envoyer, regroupant le formulaire et les articles
+const commandeUser = {
+    contact: {},
+    products: [],
+}
+
+document.getElementById("formulaire").addEventListener("submit", function (envoi){
+    envoi.preventDefault();//
+
+    //Avant d'envoyer un formulaire, vérification que le panier n'est pas vide.
+    if (panier.length == 0){
+        alert("Attention, votre panier est vide.");
+    }
+    else {
+        //Récupération des champs
+        let nomForm = document.getElementById("Nomform").value;
+        let prenomForm = document.getElementById("Prénom").value;
+        let emailForm = document.getElementById("Email").value;
+        let adresseForm = document.getElementById("Adresse").value;
+        let villeForm = document.getElementById("Ville").value;
+        let codePostalForm = document.getElementById("Codepostal").value;
+
+        //Création de l'objet formulaireObjet
+        commandeUser.contact = {
+            firstName: prenomForm,
+            lastName: nomForm,  
+            address: adresseForm,
+            city: villeForm,
+            email: emailForm,
+        }    
+        
+        //Création du tableau des articles
+        panier.forEach(articlePanier =>
+            commandeUser.products.push(articlePanier._id)
+        )
+
+        //Envoi des données récupérées
+        const optionsFetch = {
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            method:"POST",
+            body: JSON.stringify(commandeUser),         
+        }     
+
+        fetch(urlOrder, optionsFetch).then(function(response) {
+            response.json().then(function(text) {
+              console.log(text.orderId);
+              window.location = `./confirmation.html?id=${text.orderId}&name=${prenomForm}&prix=${total}`
+            });
+        });
+        localStorage.clear()       
+    }
+})

@@ -27,7 +27,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="produit.html">Produits</a>
                                 </li>
-                                <li class="cart"><a class="nav-link btn-danger" href="panier.html"><ion-icon name="basket"></ion-icon><span> 0</span></a>
+                                <li class="cart"><a class="nav-link btn-danger" href="panier.html">Panier<ion-icon name="basket"></ion-icon><span id="Numberarticle"></span></a>
                                 </li>
                             </ul>
                         </div>
@@ -43,39 +43,32 @@
             <div class="row my-3">
                 <div class="col">
                     <h1>Description</h1>
-                </div>
-                <article class="row" id="Descriptionproduit">
+                    <div id="Selectionproduit">
+                        <article id="Descriptionproduit"></article>
+                            <label class="btn btn-primary" for="lentille">Choisissez votre lentille de caméra : </label><br />
+                            <select name="lentille" id="lentille">
 
-                </article>
-                <aside class="col-lg-6">
-                    <div class="row" id="Selectionproduit">
+                            </select>                        
                     </div>
-                    <label for="lentille">Choisissez la lentille de votre caméra:</label><br />
-                    <select name="lentille" id="lentille"></select>
-                    <div id="Descriptionproduit"></div>
-                    <div class="row">
-                        <div class="col">
-                            <div id="Quantité">
-                                <label for="Nombre" id="Quantitéproduit">Quantité</label><br />
-                                <select name="Nombre" id="Nombre">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="Quantité">
+                        <label class="btn btn-primary" for="Nombre" id="Quantitéproduit">Quantité : </label><br />
+                            <select name="Nombre" id="Nombre">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
                     </div>
-                </aside>
-            
-               
-                  
-                
-                <div class="row">
-                    <div class="col">
-                        <button type="button" class="btn btn-outline-danger" id="Boutonpanier">Ajouter au panier</button>
-                    </div>
+                </div>
+            </div>    
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-danger" id="Boutonpanier">Ajouter au panier</button>
                 </div>
             </div>
         </div>
@@ -98,8 +91,8 @@
 
 
     <!-- Optional JavaScript -->
-        <script src="./js/product.js"></script>
         <script src="./js/functions.js"></script>
+        <script src="./js/product.js"></script>   
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
