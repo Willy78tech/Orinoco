@@ -20,7 +20,7 @@ function affichagePanier (){
 
         /*Attributs suplémentaires*/
         tableauFooterPrixTotal.setAttribute("colspan", "4");
-        tableauFooterPrixTotal.setAttribute("class", "btn btn-primary");
+        tableauFooterPrixTotal.setAttribute("class", "thead-dark");
 
         /*Hiérarchisation des élements crées*/
         tableauSection.appendChild(tableauPanier);
@@ -34,7 +34,7 @@ function affichagePanier (){
         tableauHeaderImage.textContent = "Article(s)";
         tableauHeaderNom.textContent = "Nom(s)";
         tableauHeaderPrix.textContent = "Prix";
-        tableauHeaderAction.textContent = "Action";
+        tableauHeaderAction.textContent = "Supprimer";
 
         /*Création d'une ligne dans le tableau pour chaque produit composant le panier*/
         JSON.parse(localStorage.getItem("monPanier")).forEach((article, index) => {
@@ -47,6 +47,8 @@ function affichagePanier (){
             /*Attributs suplémentaires*/
             articleImage.setAttribute("src", article.imageUrl);
             articleImage.setAttribute("class", "img-fluid img-thumbnail");
+            articleImage.setAttribute("width", "100");
+            articleImage.setAttribute("height", "80");
             articleAction.setAttribute("alt", "Retirer l'article du panier.");
             articleAction.setAttribute("class", "fas fa-trash-alt"); 
             //Logo poubelle pour supprimer l'article du panier.
