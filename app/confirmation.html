@@ -11,7 +11,7 @@
 
     </head>
     <body>
-        <div class="bg-dark">
+        <header class="bg-dark">
             <div class="container">
                 <div class="row">
                     <nav class="col navbar navbar-expand-lg navbar-dark">
@@ -34,31 +34,26 @@
                     </nav>
                 </div>
             </div>
-        </div>
-        <!-- MAIN / Partie principale 
-            Partie générée par le script JavaScript et par requête avec l'API
-            -->
-            <!--MAIN-->
-        <div class="container">
-            <div class="row my-3">
-                <div class="col">
-                    <h1>Description</h1>
-                    <div id="Selectionproduit">
-                        <article id="Descriptionproduit"></article>
-                            <label class="btn btn-primary" for="lentille">Choisissez votre lentille de caméra : </label><br/>
-                            <select name="lentille" id="lentille">
-
-                            </select>                        
+        </header>
+        <!--MAIN-->
+        <main class="Mainconfirmation">
+            <div class="container" id="Containerconfirmation">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="text-center" id="h1confirmation">Confirmation de votre commande.</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div id="Sectionconfirmation">
+                            <p>Bonjour <span id="Namecommande"></span>.</p><br />
+                            <p>Nous vous remercions pour votre commande. Le prix de vos achats est de <span id="Prixcommande"></span> €.</p><br />
+                            <p>Voici le numéro de votre commande : <span id="Idcommande"></span></p><br />
+                            <p>Merci de bien vouloir le conserver. Nous espérons vous revoir prochainement et vous remercions pour votre confiance.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col">
-                    <button type="button" class="btn btn-danger" id="Boutonpanier">Ajouter au panier</button>
-                </div>
-            </div>
-        </div>
         <footer class="bg-light mt-5">
             <div class="container">
                 <div class="row pt-4 pb-3">
@@ -79,7 +74,7 @@
 
     <!-- Optional JavaScript -->
         <script src="./js/functions.js"></script>
-        <script src="./js/product.js"></script>   
+        <script src="./js/confirmation.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

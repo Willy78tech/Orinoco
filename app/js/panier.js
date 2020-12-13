@@ -10,7 +10,7 @@ function affichagePanier (){
 
         //Création du tableau
         let tableauPanier = create("table", "class", "table");
-        let tableauHeaderLigne = create("thead", "class", "thead-light");
+        let tableauHeaderLigne = create("thead", "class", "thead-dark");
         let tableauHeaderImage = document.createElement("th");
         let tableauHeaderNom = document.createElement("th");
         let tableauHeaderPrix = document.createElement("th");
@@ -20,6 +20,7 @@ function affichagePanier (){
 
         /*Attributs suplémentaires*/
         tableauFooterPrixTotal.setAttribute("colspan", "4");
+        tableauFooterPrixTotal.setAttribute("class", "btn btn-primary");
 
         /*Hiérarchisation des élements crées*/
         tableauSection.appendChild(tableauPanier);
@@ -45,6 +46,7 @@ function affichagePanier (){
 
             /*Attributs suplémentaires*/
             articleImage.setAttribute("src", article.imageUrl);
+            articleImage.setAttribute("class", "img-fluid img-thumbnail");
             articleAction.setAttribute("alt", "Retirer l'article du panier.");
             articleAction.setAttribute("class", "fas fa-trash-alt"); 
             //Logo poubelle pour supprimer l'article du panier.
@@ -96,12 +98,12 @@ document.getElementById("formulaire").addEventListener("submit", function (envoi
     }
     else {
         //Récupération des champs
-        let nomForm = document.getElementById("Nomform").value;
-        let prenomForm = document.getElementById("Prénom").value;
-        let emailForm = document.getElementById("Email").value;
-        let adresseForm = document.getElementById("Adresse").value;
-        let villeForm = document.getElementById("Ville").value;
-        let codePostalForm = document.getElementById("Codepostal").value;
+        let nomForm = document.getElementById("lastname").value;
+        let prenomForm = document.getElementById("firstname").value;
+        let emailForm = document.getElementById("email").value;
+        let adresseForm = document.getElementById("adress").value;
+        let villeForm = document.getElementById("city").value;
+        let codePostalForm = document.getElementById("postal code").value;
 
         //Création de l'objet formulaireObjet
         commandeUser.contact = {
