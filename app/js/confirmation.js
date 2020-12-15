@@ -8,3 +8,7 @@ let idConfirmation = document.getElementById("Idcommande");
 nameConfirmation.textContent = paramsConfirmation.get('name');
 prixConfirmation.textContent = paramsConfirmation.get('prix');
 idConfirmation.textContent = paramsConfirmation.get('id');
+
+nameConfirmation.setAttribute("class", "btn btn-primary");
+prixConfirmation.setAttribute("class", "btn btn-primary");
+idConfirmation.setAttribute("class", "btn btn-primary");

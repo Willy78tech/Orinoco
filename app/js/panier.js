@@ -92,7 +92,7 @@ const commandeUser = {
 }
 
 document.getElementById("formulaire").addEventListener("submit", function (envoi){
-    envoi.preventDefault();//
+    envoi.preventDefault();
 
     //Avant d'envoyer un formulaire, vérification que le panier n'est pas vide.
     if (panier.length == 0){
